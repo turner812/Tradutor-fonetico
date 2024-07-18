@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tradutor fonético</title>
+</head>
+  <style>
+    body{  
+      align-content: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #ccc;
+    }
+    .container{
+      background: white;
+      border: black;
+      border-radius: 8px;
+      box-shadow: 0 0 10px black;
+      padding: 1%;
+    }
+  
+    button {
+      padding: 10px 20px;
+      background-color: #ff7800;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover{
+      background: #ff6000;
+    }
+  
+    input[type="text"] {
+      width: 94%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #000;
+      border-radius: 4px;
+    }
+  
+    .saida{
+      margin-top: 20px;
+      /* border: 1px solid #000;
+      border-radius: 4px; */
+    }
+  </style>
+<body>
+  <div class="container">
+    <h1>Conversão fonética</h1>
+    <input type="text" class="entrada" id="entrada">
+    <button type="button" onclick="traduzir()">Traduzir</button>
+    <p class="Resultado"><strong>Resultado:</strong></p>
+    <p class="saida" id="saida"></p>
+  </div>
+</body>
+<script>
+  const alfabeto_fonetico = {
+        'A': 'Alfa', 'B': 'Bravo', 'C': 'Charlie', 'D': 'Delta', 'E': 'Echo', 'F': 'Fox',
+        'G': 'Golf', 'H': 'Hotel', 'I': 'India', 'J': 'Juliett', 'K': 'Kilo', 'L': 'Lima',
+        'M': 'Mike', 'N': 'November', 'O': 'Oscar', 'P': 'Papa', 'Q': 'Quebec', 'R': 'Romeo',
+        'S': 'Sierra', 'T': 'Tango', 'U': 'Uniform', 'V': 'Victor', 'W': 'Whiskey', 'X': 'Xingu',
+        'Y': 'Yankee', 'Z': 'Zulu', '0': 'Zero', '1': 'Um', '2': 'Dois', '3': 'Três', '4': 'Quatro',
+        '5': 'Cinco', '6': 'Seis', '7': 'Sete', '8': 'Oito', '9': 'Nove'
+  };
+
+ function traduzir() {
+  // coleta o valor do campo de entrada com o id 'entrada' e converte esse valor para letras maiúsculas.
+  let texto = document.getElementById('entrada').value.toUpperCase();
+  // Aqui, um array vazio é criado para armazenar os valores fonéticos dos caracteres da placa.
+  let combinacao = [];
+
+  // Este loop percorre cada caractere da string texto.
+  for (let letra of texto) {
+    // Se o caractere existir no dicionário alfabeto_fonetico,
+    if (alfabeto_fonetico[letra]) {
+      // ele é adicionado ao array 'combinacao' como seu valor fonético correspondente.
+      combinacao.push(alfabeto_fonetico[letra]);
+    } else {
+      // Caso contrário, o próprio caractere é adicionado ao array.
+      combinacao.push(letra)
+    }
+  }
+
+  document.getElementById('saida').innerText = combinacao.join(' ');
+  // Limpa o campo de entrada apos clicar em traduzir
+  document.getElementById('entrada').value = '';
+ }
+</script>
+</html>
+
